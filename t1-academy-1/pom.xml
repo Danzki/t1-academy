@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>t1-academy-1</artifactId>
+    <packaging>jar</packaging>
+    <name>t1-academy-1</name>
+
+    <parent>
+        <groupId>com.danzki</groupId>
+        <artifactId>t1-academy</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <properties>
+        <start-class>com.danzki.application</start-class>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>

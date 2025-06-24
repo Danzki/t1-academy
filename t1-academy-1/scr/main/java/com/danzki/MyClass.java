@@ -14,22 +14,22 @@ public class MyClass {
         System.out.println("Running static method after all");
     }
 
-    @Before
+    @BeforeTest
     private void methodBeforeEvery() {
         System.out.println("Running methodBeforeEvery");
     }
 
-    @Before
+    @BeforeTest
     private void methodBeforeEvery2() {
         System.out.println("Running methodBeforeEvery2");
     }
 
-    @After
+    @AfterTest
     private void methodAfterEvery() {
         System.out.println("Running methodAfterEvery");
     }
 
-    @After
+    @AfterTest
     private void methodAfterEvery2() {
         System.out.println("Running methodAfterEvery2");
     }

@@ -38,8 +38,8 @@ public class TestRunner {
         AnnotationProcessor.checkStaticMethod(methods, BeforeSuite.class);
         AnnotationProcessor.checkStaticMethod(methods, AfterSuite.class);
 
-        methodsBeforeEvery = AnnotationProcessor.getMethodsForEvery(methods, Before.class);
-        methodsAfterEvery = AnnotationProcessor.getMethodsForEvery(methods, After.class);
+        methodsBeforeEvery = AnnotationProcessor.getMethodsForEvery(methods, BeforeTest.class);
+        methodsAfterEvery = AnnotationProcessor.getMethodsForEvery(methods, AfterTest.class);
 
         TestRunner.methodsToInvoke = AnnotationProcessor.getSortedMethodsToRun(methods, methodsBeforeEvery, methodsAfterEvery);
 

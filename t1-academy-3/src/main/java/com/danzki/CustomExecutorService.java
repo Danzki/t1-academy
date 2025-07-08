@@ -2,19 +2,17 @@ package com.danzki;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class CustomExecutorService {
-    private final BlockingQueue<Runnable> taskQueue;
-    private final List<Worker> workers;
+    private final List<Runnable> taskQueue = new LinkedList<>();
+    private final List<Worker> workers = new LinkedList<>();
     private volatile boolean isShutdown = false;
+    private final ReentrantLock putLock = new ReentrantLock();
+    private final ReentrantLock pollLock = new ReentrantLock();
 
     public CustomExecutorService(int poolSize) {
-        this.taskQueue = new LinkedBlockingQueue<>();
-        this.workers = new LinkedList<>();
-
         for (int i = 0; i < poolSize; i++) {
             Worker worker = new Worker("Worker-" + (i + 1));
             worker.start();
@@ -26,7 +24,14 @@ public class CustomExecutorService {
         if (isShutdown) {
             throw new IllegalStateException("Executor has been shutdown");
         }
-        boolean isOffered = taskQueue.offer(task);
+        final ReentrantLock putLock = this.putLock;
+        boolean isOffered;
+        putLock.lock();
+        try {
+            isOffered = taskQueue.add(task);
+        } finally {
+            putLock.unlock();
+        }
         if (!isOffered) {
             System.out.println("Task is taked to run");
         }
@@ -64,21 +69,28 @@ public class CustomExecutorService {
 
         @Override
         public void run() {
-            try {
-                while (!isShutdown || !taskQueue.isEmpty()) {
-                    Runnable task;
-                    if (isShutdown) {
-                        task = taskQueue.poll(100, TimeUnit.MILLISECONDS);
-                        if (task == null) break;
-                    } else {
-                        task = taskQueue.take();
+            final ReentrantLock runLock = pollLock;
+            while (!isShutdown || !taskQueue.isEmpty() ) {
+                Runnable task = null;
+                runLock.lock();
+                try {
+                    if (!taskQueue.isEmpty()) {
+                        task = taskQueue.removeFirst();
                     }
-                    task.run();
+                } finally {
+                    runLock.unlock();
                 }
-            } catch (InterruptedException e) {
-                System.out.println(getName() + " is interrupting");
-            } finally {
-                System.out.println(getName() + " is shutting down");
+
+                if (task == null) {
+                    if (isShutdown) break;
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        break;
+                    }
+                    continue;
+                }
+                task.run();
             }
         }
     }

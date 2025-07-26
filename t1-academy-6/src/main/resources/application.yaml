@@ -1,0 +1,27 @@
+spring:
+  jpa:
+    database: PostgreSQL
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+
+    # Bot db
+  datasource:
+    url: ${DATASOURCE_URL}
+    driver: org.postgresql.Driver
+    username: ${DATASOURCE_USER}
+    password: ${DATASOURCE_PASSWORD}
+    dbcp2:
+      default-schema: ${DATABASE_SCHEMA}
+    pool-size: 10
+
+  # liquibase
+  liquibase:
+    enabled: true
+    changeLog: classpath:changelog/db.changelog-master.xml
+    url: ${DATASOURCE_URL}
+    user: ${DATASOURCE_USER}
+    password: ${DATASOURCE_PASSWORD}
+    drop-first: false
+    liquibase-schema: ${DATABASE_SCHEMA}

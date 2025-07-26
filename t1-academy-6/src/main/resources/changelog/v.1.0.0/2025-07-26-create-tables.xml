@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!--    sequence    -->
+    <changeSet id="2025-07-26-14-15" author="danzki">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="seq_id"/>
+            </not>
+        </preConditions>
+
+        <createSequence incrementBy="50"
+                        maxValue="100000000"
+                        minValue="1"
+                        schemaName="ms_store_schema"
+                        sequenceName="seq_id"
+                        startValue="1"/>
+    </changeSet>
+
+    <!--    TABLES  -->
+    <!--  id, номер счета, баланс, тип продукта (счет, карта), userId.  -->
+    <changeSet id="2025-07-26-14-20" author="danzki">
+        <createTable tableName="user_product">
+            <column name="id" type="bigint" defaultValueSequenceNext="seq_id">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="account_num" type="varchar(25)"/>
+            <column name="balance" type="bigint"/>
+            <column name="product_type" type="varchar(50)"/>
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="fk_user_product"
+                             referencedTableName="user"
+                             referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

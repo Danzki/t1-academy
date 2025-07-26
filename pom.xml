@@ -27,6 +27,7 @@
         <module>t1-academy-3</module>
 		<module>t1-academy-4</module>
 		<module>t1-academy-5</module>
+        <module>t1-academy-6</module>
     </modules>
 	<properties>
 		<java.version>21</java.version>

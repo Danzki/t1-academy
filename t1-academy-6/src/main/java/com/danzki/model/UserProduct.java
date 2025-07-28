@@ -25,6 +25,7 @@ public class UserProduct {
     private Long balance;
 
     @Column(name = "product_type")
+    @Enumerated(EnumType.STRING)
     private ProductType productType;
 
     @ManyToOne(fetch = FetchType.EAGER)

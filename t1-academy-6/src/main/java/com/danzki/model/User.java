@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "user", schema = "ms_store_schema")
+@Table(name = "user")
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
@@ -24,7 +24,7 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private List<UserProduct> products = new ArrayList<>();
 

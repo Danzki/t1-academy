@@ -8,8 +8,10 @@
     </parent>
     <artifactId>t1-academy-6</artifactId>
     <packaging>jar</packaging>
-    <name>t1-academy-6 Maven Webapp</name>
-    <url>http://maven.apache.org</url>
+    <name>t1-academy-6</name>
+    <properties>
+        <org.mapstruct.version>1.5.0.Final</org.mapstruct.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -32,6 +34,17 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${org.mapstruct.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>

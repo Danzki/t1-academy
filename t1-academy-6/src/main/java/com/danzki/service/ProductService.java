@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserProductService {
+public class ProductService {
     private final UserProductRepo productRepo;
 
     public UserProduct add(String accountNum, Long balance, ProductType productType, User owner) {

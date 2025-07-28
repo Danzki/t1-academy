@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-public class SimpleDBService {
+public class SimpleRestApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SimpleDBService.class, args);
+        SpringApplication.run(SimpleRestApplication.class, args);
     }
 }

@@ -1,10 +1,16 @@
+server:
+  port: ${SERVER_PORT}
+
 spring:
   jpa:
     database: PostgreSQL
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: none
     open-in-view: false
+    properties:
+      hibernate:
+        default_schema: ${DATABASE_SCHEMA}
 
     # Bot db
   datasource:

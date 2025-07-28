@@ -34,8 +34,13 @@ public class UserService {
         return true;
     }
 
-    public User find(User user) {
-        Optional<User> userOpt = userRepo.findById(user.getId());
+    public User find(Long id) {
+        Optional<User> userOpt = userRepo.findById(id);
+        return userOpt.orElse(null);
+    }
+
+    public User findByName(String username) {
+        Optional<User> userOpt = userRepo.findByUsername(username);
         return userOpt.orElse(null);
     }
 

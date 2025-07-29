@@ -2,28 +2,15 @@ package com.danzki.mapper;
 
 import com.danzki.dto.ProductDto;
 import com.danzki.model.UserProduct;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Component
-@RequiredArgsConstructor
-public class ProductMapper {
-    private final UserMapper userMapper;
+@Mapper(componentModel = "spring")
+public interface ProductMapper {
+//    @Mapping(target = "id", ignore = true)
+    ProductDto toDto(UserProduct product);
 
-    public ProductDto toDto(UserProduct product) {
-        ProductDto dto = new ProductDto();
-        dto.setAccountNum(product.getAccountNum());
-        dto.setBalance(product.getBalance());
-        dto.setProductType(product.getProductType().toString());
-        dto.setUser(userMapper.toDto(product.getUser()));
-        return dto;
-    }
-
-    public List<ProductDto> toDtos(List<UserProduct> products) {
-        return products.stream()
-                .map(this::toDto)
-                .toList();
-    }
+//    @Mapping(target = "id", ignore = true)
+    List<ProductDto> toDtos(List<UserProduct> products);
 }

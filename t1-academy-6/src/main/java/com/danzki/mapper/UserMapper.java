@@ -2,28 +2,18 @@ package com.danzki.mapper;
 
 import com.danzki.dto.UserDto;
 import com.danzki.model.User;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Component
-public class UserMapper {
-    public User toEntity(UserDto dto) {
-        User user = new User();
-        user.setId(dto.getId());
-        user.setUsername(dto.getUsername());
-        return user;
-    }
-    public UserDto toDto(User user) {
-        UserDto dto = new UserDto();
-        dto.setId(user.getId());
-        dto.setUsername(user.getUsername());
-        return dto;
-    }
+@Mapper(componentModel = "spring")
+public interface UserMapper {
+    @Mapping(target = "products", ignore = true)
+    User toEntity(UserDto dto);
 
-    public List<UserDto> toDtos(List<User> users) {
-        return users.stream()
-                .map(this::toDto)
-                .toList();
-    }
+    UserDto toDto(User user);
+
+    @Mapping(target = "products", ignore = true)
+    List<UserDto> toDtos(List<User> users);
 }

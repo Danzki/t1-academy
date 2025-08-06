@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public interface UserController {
     @PostMapping("/add")
     ResponseEntity<UserDto> add(@RequestParam String userName);

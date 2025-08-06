@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 public interface ProductController {
 
     @PostMapping("/add")
@@ -18,8 +18,8 @@ public interface ProductController {
     @GetMapping("/getall")
     ResponseEntity<List<ProductDto>> getAll();
 
-    @GetMapping("/get_by_user/{username}")
-    ResponseEntity<List<ProductDto>> getByUsername(@PathVariable String username);
+    @GetMapping("/user")
+    ResponseEntity<List<ProductDto>> getByUsername(@RequestParam("username") String username);
 
     @DeleteMapping("/delete/{id}")
     ResponseEntity<String> delete(@PathVariable Long id);

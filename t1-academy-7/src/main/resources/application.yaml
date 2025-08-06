@@ -1,0 +1,7 @@
+server:
+  port: ${SERVER_PORT:8081}
+
+services:
+  product:
+    host: http://localhost:8080
+    api: /api/products

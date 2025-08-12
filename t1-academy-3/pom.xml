@@ -9,14 +9,6 @@
     <artifactId>t1-academy-3</artifactId>
     <packaging>jar</packaging>
     <name>t1-academy Module 3</name>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
     <build>
         <finalName>t1-academy-3</finalName>
     </build>

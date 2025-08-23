@@ -1,0 +1,62 @@
+server:
+  port: ${SERVER_PORT:8083}
+
+spring:
+  jpa:
+    database: PostgreSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        default_schema: ${DATABASE_SCHEMA:ms_store_schema}
+
+  mvc:
+    servlet:
+      path: /api/v1
+
+    # Bot db
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:5434/ms_store_db
+    driver: org.postgresql.Driver
+    username: ${DATASOURCE_USER:postgres}
+    password: ${DATASOURCE_PASSWORD}
+    dbcp2:
+      default-schema: ${DATABASE_SCHEMA:ms_store_schema}
+    pool-size: 10
+
+  # liquibase
+  liquibase:
+    enabled: true
+    changeLog: classpath:changelog/db.changelog-master.xml
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:5434/ms_store_db
+    user: ${DATASOURCE_USER:postgres}
+    password: ${DATASOURCE_PASSWORD}
+    drop-first: false
+    default-schema: ${DATABASE_SCHEMA:ms_store_schema}
+    liquibase-schema: ${DATABASE_SCHEMA:ms_store_schema}
+
+  logging:
+    file:
+      name: logs/application-log.log
+    level:
+      root: INFO
+      org.springframework.boot.context.properties: INFO
+      com.danzki: DEBUG
+      org.springdoc: DEBUG
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+service:
+  limit:
+    default-value: 10000
+  history:
+    period-value: 40
+    period-unit: day

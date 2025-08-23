@@ -1,76 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.danzki</groupId>
-	<artifactId>t1-academy</artifactId>
-	<version>1.0.0</version>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.danzki</groupId>
+    <artifactId>t1-academy</artifactId>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>t1-academy</name>
-	<description>t1-academy</description>
-	<url/>
-	<developers>
-		<developer>
-			<name>danzki</name>
-			<email>danzki@inbox.ru</email>
-		</developer>
-	</developers>
-	<modules>
-		<module>t1-academy-1</module>
+    <description>t1-academy</description>
+    <url/>
+    <developers>
+        <developer>
+            <name>danzki</name>
+            <email>danzki@inbox.ru</email>
+        </developer>
+    </developers>
+    <modules>
+        <module>t1-academy-1</module>
         <module>t1-academy-2</module>
         <module>t1-academy-3</module>
-		<module>t1-academy-4</module>
-		<module>t1-academy-5</module>
+        <module>t1-academy-4</module>
+        <module>t1-academy-5</module>
         <module>t1-academy-6</module>
         <module>t1-academy-7</module>
+        <module>t1-academy-8</module>
+        <module>t1-academy-final</module>
     </modules>
-	<properties>
-		<java.version>21</java.version>
-		<lombok.version>1.18.32</lombok.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<org.mapstruct.version>1.5.0.Final</org.mapstruct.version>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</path>
-					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <properties>
+        <java.version>21</java.version>
+        <lombok.version>1.18.32</lombok.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.mapstruct.version>1.5.0.Final</org.mapstruct.version>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <!--    sequence    -->
+    <changeSet id="2025-08-11-10-30" author="danzki">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="seq_id"/>
+            </not>
+        </preConditions>
+
+        <createSequence incrementBy="50"
+                        maxValue="100000000"
+                        minValue="1"
+                        schemaName="ms_store_schema"
+                        sequenceName="seq_id"
+                        startValue="1"/>
+    </changeSet>
+
+    <!--    TABLES  -->
+    <changeSet id="2025-08-11-10-35" author="danzki">
+        <createTable tableName="limits">
+            <column name="id" type="bigint" defaultValueSequenceNext="seq_id">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="client_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_amount" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package com.danzki;
+
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+
+message UserName {
+  string username = 1;
+}
+
+message UserResponse {
+  string id = 1;
+  string username = 2;
+}
+
+message UserListResponse {
+  repeated UserResponse users = 1;
+}
+
+
+service UserService {
+  rpc add(UserName) returns (UserResponse);
+  rpc getAll(google.protobuf.Empty) returns (UserResponse);
+}
+
